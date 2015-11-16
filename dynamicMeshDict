@@ -1,0 +1,61 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  dev                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dynamicFvMesh      dynamicRefineFvMesh;
+
+
+
+// Refinement
+dynamicRefineFvMeshCoeffs
+{
+    // Refine every refineInterval timesteps
+    refineInterval 1;
+
+    // Maximum refinement level (starts from 0)
+    maxRefinement 1;
+
+    // Maximum cell limit (approximate)
+    maxCells 100000000;
+
+    // volScalarField to base refinement on
+    field magGradp;
+
+    // Which cells to un/refine: based on point values (simple averaging).
+    // - refine pointCells of point value inbetween minLevel..maxLevel
+    // - unrefine pointCells that are within nBufferLayers of points marked
+    //   for refinement.
+        lowerRefineLevel 17.0;
+        upperRefineLevel 184.0;
+
+    nBufferLayers 0;
+
+    // Newly introduced patch points optionally get projected onto a surface
+    //projectSurfaces ("fixedWalls4.stl");
+    //projectPatches (fixedWalls);
+    // Maximum project distance
+    //projectDistance 1;
+
+    // Fluxes to adapt. For newly created faces or split faces the flux
+    // gets estimated from an interpolated volVectorField ('velocity')
+    // First is name of the flux to adapt, second is velocity that will
+    // be interpolated and inner-producted with the face area vector.
+    correctFluxes ((phi U));
+
+        dumpLevel       false;
+}
+
+// ************************************************************************* //

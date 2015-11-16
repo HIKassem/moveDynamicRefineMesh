@@ -4,6 +4,6 @@ http://openfoam.org/
 
 # moveDynamicRefineMesh
 
-Small utility which uses dynamicRefineFvMesh to refine mesh cells around certain scalarField values. Therefore it has the same limitations of dynamicRefineFvMesh library in general. This code code is based on moveDynamicMesh utility in OpenFOAM-dev. For more information about the refinement controls check dynamicRefineFvMesh class description. It could be used to refine mesh around shock waves or interface.
+Small utility which uses dynamicRefineFvMesh to refine mesh cells around certain scalarField values. Therefore it has the same limitations of dynamicRefineFvMesh library in general. This code is based on moveDynamicMesh utility in OpenFOAM-dev. For more information about the refinement controls check dynamicRefineFvMesh class description. It could be used to refine mesh around shock waves or interface.
 
 # Don't forget use mapFields after refining!!
